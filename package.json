@@ -1,0 +1,32 @@
+{
+  "name": "bootstrap-sass-gulp",
+  "version": "1.0.0",
+  "description": "Bootstrap Sass with Gulp compilation, minification, autoprefixing, and styleguide generation",
+  "main": "index.js",
+  "dependencies": {
+    
+  },
+  "devDependencies": {
+    "sc5-styleguide": "^0.3.40"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlStar01/bootstrap-sass-gulp.git"
+  },
+  "keywords": [
+    "Bootstrap",
+    "Sass",
+    "Gulp",
+    "Styleguide"
+  ],
+  "author": "Alex Staroselsky",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AlStar01/bootstrap-sass-gulp/issues"
+  },
+  "private": true,
+  "homepage": "https://github.com/AlStar01/bootstrap-sass-gulp#readme"
+}

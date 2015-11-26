@@ -1,0 +1,30 @@
+{
+  "name": "boostrap-sass-gulp",
+  "homepage": "https://github.com/AlStar01/bootstrap-sass-gulp",
+  "authors": [
+    "Alex Staroselsky <alexstaroselsky@live.com>"
+  ],
+  "description": "Bootstrap sass with Gulp compilation, minification, autoprefixing, and styleguide generation",
+  "main": "",
+  "moduleType": [
+    "node"
+  ],
+  "keywords": [
+    "Bootstrap",
+    "Sass",
+    "Gulp",
+    "Styleguide"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "~3.3.6"
+  }
+}
