@@ -17,7 +17,7 @@ var config = {
    }
 };
 
-gulp.task('styles', function(){
+gulp.task('styles', ['clean:css'], function(){
     return gulp.src(config.src.sass)
         .pipe(plugins.sass().on('error', plugins.sass.logError))
         .pipe(plugins.autoprefixer())
@@ -31,6 +31,10 @@ gulp.task('styles', function(){
             showFiles: true
         }))
         .pipe(gulp.dest(config.dist.css));
+});
+
+gulp.task('clean:css', function(){
+    del.sync(['./dist/css/**/*.css'])
 });
 
 gulp.task('default', function() {
