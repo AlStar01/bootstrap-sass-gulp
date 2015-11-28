@@ -39,7 +39,7 @@ gulp.task('clean:css', function(){
 
 
 gulp.task('scripts', ['clean:js'], function(){
-
+    console.log("test");
 });
 
 gulp.task('clean:js', function(){
