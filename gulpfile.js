@@ -37,6 +37,11 @@ gulp.task('clean:css', function(){
     del.sync(['./dist/css/**/*.css'])
 });
 
+gulp.task('aria', function() {
+  return gulp.src(config.src.html)
+    .pipe(plugins.accessibility());
+});
+
 gulp.task('default', function() {
   // place code for your default task here
 });
