@@ -18,6 +18,13 @@ var config = {
         css: "./dist/css",
         javascripts: "./dist/javascripts",
         images: "./dist/images"
+    },
+    build: {
+        tasks: [
+            'scripts',
+            'styles',
+            'html:aria'
+        ]
     }
 };
 
@@ -75,7 +82,9 @@ gulp.task('html:aria', function () {
 });
 
 gulp.task('build', function(){
-    
+    config.build.tasks.forEach( function ( task ) {
+        gulp.start( task );
+      });
 });
 
 gulp.task('default', function () {
