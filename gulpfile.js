@@ -7,7 +7,8 @@ var config = {
     src: {
         javascripts: {
             bootstrap: "./src/javascripts/bootstrap/**/*.js",
-            vendor: "./src/javascripts/vendor/**/*.js"
+            app: "./src/javascripts/app/**/*.js",
+            vendor: "./src/javascripts/vendor/"
         },
         sass: "./src/sass/**/*.scss",
         images: "./src/images/**/*",
@@ -45,7 +46,8 @@ gulp.task('clean:css', function () {
 
 gulp.task('scripts', ['clean:js'], function () {
     return gulp.src([
-        config.src.javascripts.vendor,
+        config.src.javascripts.vendor + 'jquery.js',
+        config.src.javascripts.app,
         config.src.javascripts.bootstrap
     ])
     .pipe(plugins.concat('app.js'))
@@ -70,6 +72,10 @@ gulp.task('clean:js', function () {
 gulp.task('html:aria', function () {
     return gulp.src(config.src.html)
         .pipe(plugins.accessibility());
+});
+
+gulp.task('build', function(){
+    
 });
 
 gulp.task('default', function () {

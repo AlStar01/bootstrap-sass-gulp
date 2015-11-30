@@ -9209,6 +9209,9 @@ return jQuery;
 
 }));
 
+var foo = "Hello World";
+
+console.log(foo);
 /* ========================================================================
  * Bootstrap: alert.js v3.3.6
  * http://getbootstrap.com/javascript/#alerts
