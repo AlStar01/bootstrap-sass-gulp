@@ -13,6 +13,7 @@
     "gulp-changed": "latest",
     "gulp-concat": "latest",
     "gulp-filesize": "latest",
+    "gulp-imagemin": "^2.4.0",
     "gulp-load-plugins": "latest",
     "gulp-minify-css": "latest",
     "gulp-rename": "latest",
