@@ -1,0 +1,23 @@
+/* #HOME */
+/* ./src/sass/company/pages/_home.scss */
+
+.foo {
+    color: $brand-primary;
+    background: red;
+    
+    .bar {
+        background: $gray;
+        
+        &:hover {
+            background: $gray-dark;
+        }
+    }
+    
+    &.foobar {
+        @include clearfix();
+        @include center-block();
+    }
+}
+
+/* END #HOME */
+/* ./src/sass/company/pages/_home.scss */

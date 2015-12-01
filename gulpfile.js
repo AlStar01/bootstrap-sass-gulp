@@ -110,6 +110,12 @@ gulp.task('build', function(){
       });
 });
 
-gulp.task('default', function () {
+// Watch tasks
+
+gulp.task('watch', function(){
+    gulp.watch('./src/sass/**/*.scss', ['styles']);
+});
+
+gulp.task('default', ['watch'], function () {
     // place code for your default task here
 });

@@ -52,12 +52,6 @@
 @import "bootstrap/responsive-utilities";
 @import "company/responsive-utilities";
 
-.test {
-    color: blue;
-    border-radius: 50%;
-    box-shadow: 10px 10px 5px #888888;
-    
-    @include xs-down {
-        color: red;
-    }
-}
+// Pages
+@import "company/pages/home";
+@import "company/pages/about";
