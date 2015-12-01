@@ -20,6 +20,7 @@
     "gulp-size": "latest",
     "gulp-sourcemaps": "latest",
     "gulp-uglify": "latest",
+    "gulp-uncss": "^1.0.4",
     "gulp-util": "latest",
     "gulp-watch": "latest",
     "lodash": "latest",

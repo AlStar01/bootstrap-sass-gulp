@@ -46,6 +46,29 @@ gulp.task('styles', ['clean:css'], function () {
         .pipe(gulp.dest(config.dist.css));
 });
 
+gulp.task('styles:uncss', ['clean:css'], function () {
+    return gulp.src(config.src.sass)
+        .pipe(plugins.sass().on('error', plugins.sass.logError))
+        .pipe(plugins.autoprefixer())
+        .pipe(plugins.uncss({
+            html: [
+                './src/html/**/*.html'
+            ]
+        }))
+        .pipe(plugins.size({
+            showFiles: true
+        }))
+        .pipe(gulp.dest(config.dist.css))
+        .pipe(plugins.minifyCss())
+        .pipe(plugins.rename({ 
+            suffix: ".min" 
+        }))
+        .pipe(plugins.size({
+            showFiles: true
+        }))
+        .pipe(gulp.dest(config.dist.css));
+});
+
 gulp.task('clean:css', function () {
     del.sync(['./dist/css/**/*.css'])
 });

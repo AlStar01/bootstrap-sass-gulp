@@ -1,0 +1,28 @@
+$types: (
+    float: ( left, right, none ),
+    text-align: ( left, right, center ),
+    display: ( block, inline, inline-block )
+);
+
+
+@each $type, $value in $types {
+    @each $val in $value {
+        @include xs-down {
+            .xs-down-#{$type}-#{$val} {
+                #{$type}: $val;
+            }
+        }
+        
+        @include sm-down {
+            .sm-down-#{$type}-#{$val} {
+                #{$type}: $val;
+            }
+        }
+
+        @include md-down {
+            .md-down-#{$type}-#{$val} {
+                #{$type}: $val;
+            }
+        }
+    }
+}

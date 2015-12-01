@@ -1,0 +1,50 @@
+// Visibility Content Mixins
+// utilize these conditional mixins to target above or below a specific key grid breakpoint px value
+//
+// .foo {
+//     @include xs-down {
+//         color: blue;
+//     }
+// }
+
+@mixin xs-down {
+    @media (max-width: #{$screen-xs-max}) {
+        @content;
+    }
+}
+
+@mixin sm-down {
+    @media (max-width: #{$screen-sm-max}) {
+        @content;
+    }
+}
+
+@mixin md-down {
+    @media (max-width: #{$screen-md-max}) {
+        @content;
+    }
+}
+
+@mixin xs-up {
+    @media (min-width: #{$screen-xs}) {
+        @content;
+    }
+}
+
+@mixin sm-up {
+    @media (min-width: #{$screen-sm}) {
+        @content;
+    }
+}
+
+@mixin md-up {
+    @media (min-width: #{$screen-md}) {
+        @content;
+    }
+}
+
+@mixin lg-up {
+    @media (min-width: #{$screen-lg}) {
+        @content;
+    }
+}
