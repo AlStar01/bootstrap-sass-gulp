@@ -17,19 +17,23 @@ var config = {
     dev: {
         css: "./dev/css",
         javascripts: "./dev/javascripts",
-        images: "./dev/images"
+        images: "./dev/images",
+        tasks: [
+            
+        ]
     },
     dist: {
         css: "./dist/css",
         uncss: "./dist/css/uncss",
         javascripts: "./dist/javascripts",
-        images: "./dist/images"
+        images: "./dist/images",
+        html: "./dist/html"
     },
     build: {
         tasks: [
             'scripts:prod',
             'styles:prod',
-            'html:aria'
+            'html:prod'
         ]
     }
 };
@@ -140,6 +144,24 @@ gulp.task('clean:js', function () {
 gulp.task('html:aria', function () {
     return gulp.src(config.src.html)
         .pipe(plugins.accessibility());
+});
+
+gulp.task('html:prod', ['clean:html'],function(){
+    return gulp.src(config.src.html)
+        .pipe(plugins.size({
+            showFiles: true
+        }))
+        .pipe(plugins.minifyHtml())
+        .pipe(plugins.size({
+            showFiles: true
+        }))
+        .pipe(gulp.dest(config.dist.html));
+});
+
+gulp.task('clean:html', function () {
+    del.sync([
+        './dist/html/**/*.html'
+    ])
 });
 
 gulp.task('build', function(){

@@ -16,6 +16,7 @@
     "gulp-imagemin": "^2.4.0",
     "gulp-load-plugins": "latest",
     "gulp-minify-css": "latest",
+    "gulp-minify-html": "^1.0.4",
     "gulp-rename": "latest",
     "gulp-sass": "latest",
     "gulp-size": "latest",
