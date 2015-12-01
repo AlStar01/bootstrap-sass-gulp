@@ -14,6 +14,11 @@ var config = {
         images: "./src/images/**/*",
         html: "./src/html/**/*.html"
     },
+    dev: {
+        css: "./dev/css",
+        javascripts: "./dev/javascripts",
+        images: "./dev/images"
+    },
     dist: {
         css: "./dist/css",
         uncss: "./dist/css/uncss",
@@ -22,14 +27,14 @@ var config = {
     },
     build: {
         tasks: [
-            'scripts',
-            'styles',
+            'scripts:prod',
+            'styles:prod',
             'html:aria'
         ]
     }
 };
 
-gulp.task('styles', ['clean:css'], function () {
+gulp.task('styles:prod', ['clean:css', 'styles:uncss'], function () {
     return gulp.src(config.src.sass)
         .pipe(plugins.sass().on('error', plugins.sass.logError))
         .pipe(plugins.autoprefixer())
@@ -45,6 +50,16 @@ gulp.task('styles', ['clean:css'], function () {
             showFiles: true
         }))
         .pipe(gulp.dest(config.dist.css));
+});
+
+gulp.task('styles:dev', ['clean:css'], function () {
+    return gulp.src(config.src.sass)
+        .pipe(plugins.sass().on('error', plugins.sass.logError))
+        .pipe(plugins.autoprefixer())
+        .pipe(plugins.size({
+            showFiles: true
+        }))
+        .pipe(gulp.dest(config.dev.css));
 });
 
 gulp.task('styles:uncss', ['clean:uncss'], function () {
@@ -71,11 +86,14 @@ gulp.task('styles:uncss', ['clean:uncss'], function () {
 });
 
 gulp.task('clean:css', function () {
-    del.sync(['./dist/css/**/*.css'])
+    del.sync([
+        './dist/css/**/*.css',
+        './dev/css/**/*.css'
+    ])
 });
 
 gulp.task('clean:uncss', function () {
-    del.sync(['./dist/css/uncss/**/*.css'])
+    del.sync(['./dist/css/uncss/**/*.css']);
 });
 
 gulp.task('scripts:dev', ['clean:js'], function () {
@@ -88,7 +106,7 @@ gulp.task('scripts:dev', ['clean:js'], function () {
     .pipe(plugins.size({
         showFiles: true
     }))
-    .pipe(gulp.dest(config.dist.javascripts));
+    .pipe(gulp.dest(config.dev.javascripts));
 });
 
 gulp.task('scripts:prod', ['clean:js'], function () {
@@ -130,7 +148,7 @@ gulp.task('build', function(){
 // Watch tasks
 
 gulp.task('watch', function(){
-    gulp.watch(config.src.sass, ['styles']);
+    gulp.watch(config.src.sass, ['styles:dev']);
     gulp.watch([
         config.src.javascripts.vendor + 'jquery.js',
         config.src.javascripts.bootstrap,
