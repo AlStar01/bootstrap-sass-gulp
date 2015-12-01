@@ -131,7 +131,10 @@ gulp.task('scripts:prod', ['clean:js'], function () {
 });
 
 gulp.task('clean:js', function () {
-    del.sync(['./dist/javascripts/**/*.js'])
+    del.sync([
+        './dist/javascripts/**/*.js',
+        './dev/javascripts/**/*.js'
+    ])
 });
 
 gulp.task('html:aria', function () {
