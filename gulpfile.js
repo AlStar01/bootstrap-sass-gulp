@@ -74,7 +74,20 @@ gulp.task('clean:css', function () {
 });
 
 
-gulp.task('scripts', ['clean:js'], function () {
+gulp.task('scripts:dev', ['clean:js'], function () {
+    return gulp.src([
+        config.src.javascripts.vendor + 'jquery.js',
+        config.src.javascripts.bootstrap,
+        config.src.javascripts.app
+    ])
+    .pipe(plugins.concat('app.js'))
+    .pipe(plugins.size({
+        showFiles: true
+    }))
+    .pipe(gulp.dest(config.dist.javascripts));
+});
+
+gulp.task('scripts:prod', ['clean:js'], function () {
     return gulp.src([
         config.src.javascripts.vendor + 'jquery.js',
         config.src.javascripts.app,
@@ -113,9 +126,14 @@ gulp.task('build', function(){
 // Watch tasks
 
 gulp.task('watch', function(){
-    gulp.watch('./src/sass/**/*.scss', ['styles']);
+    gulp.watch(config.src.sass, ['styles']);
+    gulp.watch([
+        config.src.javascripts.vendor + 'jquery.js',
+        config.src.javascripts.bootstrap,
+        config.src.javascripts.app
+    ], ['scripts:dev']);
 });
 
 gulp.task('default', ['watch'], function () {
-    // place code for your default task here
+    return plugins.util.log("Gulp is running");
 });

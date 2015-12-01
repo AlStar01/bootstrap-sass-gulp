@@ -9212,6 +9212,10 @@ return jQuery;
 var foo = "Hello World";
 
 console.log(foo);
+
+function add(a,b){
+    return a + b;
+}
 /* ========================================================================
  * Bootstrap: alert.js v3.3.6
  * http://getbootstrap.com/javascript/#alerts
