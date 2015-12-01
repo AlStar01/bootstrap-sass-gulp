@@ -16,6 +16,7 @@ var config = {
     },
     dist: {
         css: "./dist/css",
+        uncss: "./dist/css/uncss",
         javascripts: "./dist/javascripts",
         images: "./dist/images"
     },
@@ -46,7 +47,7 @@ gulp.task('styles', ['clean:css'], function () {
         .pipe(gulp.dest(config.dist.css));
 });
 
-gulp.task('styles:uncss', ['clean:css'], function () {
+gulp.task('styles:uncss', ['clean:uncss'], function () {
     return gulp.src(config.src.sass)
         .pipe(plugins.sass().on('error', plugins.sass.logError))
         .pipe(plugins.autoprefixer())
@@ -58,21 +59,24 @@ gulp.task('styles:uncss', ['clean:css'], function () {
         .pipe(plugins.size({
             showFiles: true
         }))
-        .pipe(gulp.dest(config.dist.css))
+        .pipe(gulp.dest(config.dist.uncss))
         .pipe(plugins.minifyCss())
-        .pipe(plugins.rename({ 
-            suffix: ".min" 
+        .pipe(plugins.rename({
+            suffix: ".min"
         }))
         .pipe(plugins.size({
             showFiles: true
         }))
-        .pipe(gulp.dest(config.dist.css));
+        .pipe(gulp.dest(config.dist.uncss));
 });
 
 gulp.task('clean:css', function () {
     del.sync(['./dist/css/**/*.css'])
 });
 
+gulp.task('clean:uncss', function () {
+    del.sync(['./dist/css/uncss/**/*.css'])
+});
 
 gulp.task('scripts:dev', ['clean:js'], function () {
     return gulp.src([
