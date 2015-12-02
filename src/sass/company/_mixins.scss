@@ -1,12 +1,3 @@
-// Visibility Content Mixins
-// utilize these conditional mixins to target above or below a specific key grid breakpoint px value
-//
-// .foo {
-//     @include xs-down {
-//         color: blue;
-//     }
-// }
-
 @mixin xs-down {
     @media (max-width: #{$screen-xs-max}) {
         @content;
@@ -47,4 +38,53 @@
     @media (min-width: #{$screen-lg}) {
         @content;
     }
+}
+
+
+@function parseInt($n) { /* 2 */
+  @return $n / ($n * 0 + 1);
+}
+
+// rem($property, $values)
+//
+// Outputs responsive unit sizing for given property and size value.
+//
+// $property - CSS property, must be surrounded by quotes "font-size".
+// $values - CSS appropriate size value in pixels or rem, 10px or 1rem.
+//
+// Style guide: mixins.rem
+
+@mixin rem($property, $values) {
+  $px : (); /* 3 */
+  $rem: (); /* 3 */
+
+  @each $value in $values { /* 4 */
+
+    @if $value == 0 or $value == auto { /* 5 */
+      $px : append($px , $value);
+      $rem: append($rem, $value);
+    }
+
+    @else {
+      $unit: unit($value);    /* 6 */
+      $val: parseInt($value); /* 6 */
+
+      @if $unit == "px" {  /* 7 */
+        $px : append($px,  $value);
+        $rem: append($rem, ($val / 10 + rem));
+      }
+
+      @if $unit == "rem" { /* 7 */
+        $px : append($px,  ($val * 10 + px));
+        $rem: append($rem, $value);
+      }
+    }
+  }
+
+  @if $px == $rem {     /* 8 */
+    #{$property}: $px;  /* 9 */
+  } @else {
+    #{$property}: $px;  /* 9 */
+    #{$property}: $rem; /* 9 */
+  }
 }

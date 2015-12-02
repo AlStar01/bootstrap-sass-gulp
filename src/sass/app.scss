@@ -2,6 +2,12 @@
 // Core variables and mixins
 @import "bootstrap/variables";
 @import "bootstrap/mixins";
+
+// Mixins
+//
+// This is mixins you can use
+//
+// Style guide: mixins
 @import "company/mixins";
 
 // Reset and dependencies
@@ -50,6 +56,12 @@
 // Utility classes
 @import "bootstrap/utilities";
 @import "bootstrap/responsive-utilities";
+
+// Responsive Utilities
+//
+// Responsive utility mixins for conditional display of content
+//
+// Style guide: responsive-utiligies
 @import "company/responsive-utilities";
 
 
