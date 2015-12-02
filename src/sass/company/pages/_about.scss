@@ -1,13 +1,27 @@
 /* #ABOUT */
 /* ./src/sass/company/pages/_about.scss */
 
+
+// Test
+//
+// Test component
+//
+// Markup: <div class="test {{modifier_class}}">Test Element</div>
+//
+// .primary - Use this class as a test class
+//
+// Style guide: about.test
+
 .test {
     color: blue;
     border-radius: 50%;
-    box-shadow: 10px 10px 5px #888888;
     
     @include xs-down {
         color: red;
+    }
+    
+    &.primary {
+        color: green;
     }
 }
 

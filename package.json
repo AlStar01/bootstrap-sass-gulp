@@ -18,6 +18,7 @@
     "gulp-minify-css": "latest",
     "gulp-minify-html": "^1.0.4",
     "gulp-rename": "latest",
+    "gulp-run": "^1.6.11",
     "gulp-sass": "latest",
     "gulp-size": "latest",
     "gulp-sourcemaps": "latest",
@@ -25,8 +26,8 @@
     "gulp-uncss": "latest",
     "gulp-util": "latest",
     "gulp-watch": "latest",
-    "lodash": "latest",
-    "sc5-styleguide": "latest"
+    "kss": "latest",
+    "lodash": "latest"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

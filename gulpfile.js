@@ -2,7 +2,6 @@ var gulp = require('gulp');
 var plugins = require('gulp-load-plugins')();
 var del = require('del');
 var path = require('path');
-var styleguide = require('sc5-styleguide');
 
 var config = {
     src: {
@@ -90,29 +89,19 @@ gulp.task('styles:uncss', function () {
         .pipe(gulp.dest(config.dist.uncss));
 });
 
-gulp.task('styleguide:generate', function () {
-    return gulp.src(config.src.sass)
-        .pipe(styleguide.generate({
-            title: "Sample Styleguide",
-            server: true,
-            rootPath: './styleguide'
-        }))
-        .pipe(gulp.dest('./styleguide'));
-});
-
-gulp.task('styleguide:applystyles', function () {
-    return gulp.src(config.src.sass)
-        .pipe(plugins.sass().on('error', plugins.sass.logError))
-        .pipe(plugins.autoprefixer())
-        .pipe(styleguide.applyStyles())
-        .pipe(gulp.dest('./styleguide'));
-});
-
-gulp.task('styleguide', ['styleguide:generate', 'styleguide:applystyles']);
-
 gulp.task('clean:css', function () {
     del.sync([
         './dist/css/**/*.css'
+    ])
+});
+
+gulp.task('styleguide', ['clean:styleguide', 'clean:css', 'styles:prod'], function() {
+    return plugins.run('kss-node --config kss-config.json').exec();
+});
+
+gulp.task('clean:styleguide', function () {
+    del.sync([
+        './styleguide/**/*'
     ])
 });
 
