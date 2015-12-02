@@ -18,8 +18,12 @@ var config = {
         css: "./dev/css",
         javascripts: "./dev/javascripts",
         images: "./dev/images",
+        html: "./dev/html",
         tasks: [
-            
+            "styles:dev",
+            "scripts:dev",
+            "html:dev",
+            "styles:phantomcss"
         ]
     },
     dist: {
@@ -42,10 +46,6 @@ gulp.task('styles:prod', ['clean:css', 'styles:uncss'], function () {
     return gulp.src(config.src.sass)
         .pipe(plugins.sass().on('error', plugins.sass.logError))
         .pipe(plugins.autoprefixer())
-        .pipe(plugins.size({
-            showFiles: true
-        }))
-        .pipe(gulp.dest(config.dist.css))
         .pipe(plugins.minifyCss())
         .pipe(plugins.rename({ 
             suffix: ".min" 
@@ -75,10 +75,6 @@ gulp.task('styles:uncss', function () {
                 './src/html/**/*.html'
             ]
         }))
-        .pipe(plugins.size({
-            showFiles: true
-        }))
-        .pipe(gulp.dest(config.dist.uncss))
         .pipe(plugins.minifyCss())
         .pipe(plugins.rename({
             suffix: ".min"
@@ -89,7 +85,7 @@ gulp.task('styles:uncss', function () {
         .pipe(gulp.dest(config.dist.uncss));
 });
 
-gulp.task('styles:phantomcss', function() {
+gulp.task('test:phantomcss', function() {
     return gulp.src('./tests/css/testsuite.js')
         .pipe(plugins.phantomcss());
 });
@@ -130,10 +126,6 @@ gulp.task('scripts:prod', ['clean:js'], function () {
         config.src.javascripts.bootstrap
     ])
     .pipe(plugins.concat('app.js'))
-    .pipe(plugins.size({
-        showFiles: true
-    }))
-    .pipe(gulp.dest(config.dist.javascripts))
     .pipe(plugins.uglify())
     .pipe(plugins.rename({ 
         suffix: ".min" 
@@ -155,6 +147,14 @@ gulp.task('html:aria', function () {
         .pipe(plugins.accessibility());
 });
 
+gulp.task('html:dev', ['html:aria'],function(){
+    return gulp.src(config.src.html)
+        .pipe(plugins.size({
+            showFiles: true
+        }))
+        .pipe(gulp.dest(config.dev.html));
+});
+
 gulp.task('html:prod', ['clean:html'],function(){
     return gulp.src(config.src.html)
         .pipe(plugins.size({
@@ -173,21 +173,45 @@ gulp.task('clean:html', function () {
     ])
 });
 
-gulp.task('build', function(){
+gulp.task('build:prod', function(){
     config.build.tasks.forEach( function ( task ) {
         gulp.start( task );
       });
 });
 
-// Watch tasks
+gulp.task('clean:prod', function () {
+    del.sync([
+        './dist/html/**/*.html',
+        './dist/css/**/*.css',
+        './dist/javascripts/**/*.js',
+        './dist/images/**/*'
+    ])
+});
 
+gulp.task('build:dev', ['clean:dev'], function(){
+    config.dev.tasks.forEach( function ( task ) {
+        gulp.start( task );
+      });
+});
+
+gulp.task('clean:dev', function () {
+    del.sync([
+        './dev/html/**/*.html',
+        './dev/css/**/*.css',
+        './dev/javascripts/**/*.js',
+        './dev/images/**/*'
+    ])
+});
+
+// Watch tasks
 gulp.task('watch', function(){
-    gulp.watch(config.src.sass, ['styles:dev']);
+    gulp.watch(config.src.sass, ['styles:dev', 'test:phantomcss']);
     gulp.watch([
         config.src.javascripts.vendor + 'jquery.js',
         config.src.javascripts.bootstrap,
         config.src.javascripts.app
     ], ['scripts:dev']);
+    gulp.watch(config.src.html, ['html:dev, test:phantomcss']);
 });
 
 gulp.task('default', ['watch'], function () {

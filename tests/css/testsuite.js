@@ -1,7 +1,7 @@
 casper.
-  start( 'http://www.google.co.uk' ).
+  start( './src/html/index.html' ).
   then(function(){
-    phantomcss.screenshot('#hplogo', 'google');
+    phantomcss.screenshot('#sample', 'Button');
   });
 
 casper.run();

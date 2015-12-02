@@ -5899,11 +5899,12 @@ button.close {
 /* ./src/sass/company/pages/_about.scss */
 .test {
   color: blue;
-  border-radius: 50%;
-  box-shadow: 10px 10px 5px #888888; }
+  border-radius: 50%; }
   @media (max-width: 767px) {
     .test {
       color: red; } }
+  .test.primary {
+    color: green; }
 
 /* ./src/sass/company/pages/_about.scss */
 /* END #ABOUT */
