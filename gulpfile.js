@@ -23,7 +23,7 @@ var config = {
             "styles:dev",
             "scripts:dev",
             "html:dev",
-            "styles:phantomcss"
+            "test:phantomcss"
         ]
     },
     dist: {
@@ -46,6 +46,10 @@ gulp.task('styles:prod', ['clean:css', 'styles:uncss'], function () {
     return gulp.src(config.src.sass)
         .pipe(plugins.sass().on('error', plugins.sass.logError))
         .pipe(plugins.autoprefixer())
+        .pipe(plugins.size({
+            showFiles: true
+        }))
+        .pipe(gulp.dest(config.dist.css))
         .pipe(plugins.minifyCss())
         .pipe(plugins.rename({ 
             suffix: ".min" 
