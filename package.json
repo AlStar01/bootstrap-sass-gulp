@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Bootstrap Sass with Gulp compilation, minification, autoprefixing, and styleguide generation",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "phantomcss": "latest"
+  },
   "devDependencies": {
     "critical": "latest",
     "del": "latest",
@@ -13,10 +15,11 @@
     "gulp-changed": "latest",
     "gulp-concat": "latest",
     "gulp-filesize": "latest",
-    "gulp-imagemin": "^2.4.0",
+    "gulp-imagemin": "latest",
     "gulp-load-plugins": "latest",
     "gulp-minify-css": "latest",
-    "gulp-minify-html": "^1.0.4",
+    "gulp-minify-html": "latest",
+    "gulp-phantomcss": "^0.1.1",
     "gulp-rename": "latest",
     "gulp-run": "^1.6.11",
     "gulp-sass": "latest",

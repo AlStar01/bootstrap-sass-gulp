@@ -89,6 +89,11 @@ gulp.task('styles:uncss', function () {
         .pipe(gulp.dest(config.dist.uncss));
 });
 
+gulp.task('styles:phantomcss', function() {
+    return gulp.src('./tests/css/testsuite.js')
+        .pipe(plugins.phantomcss());
+});
+
 gulp.task('clean:css', function () {
     del.sync([
         './dist/css/**/*.css'
