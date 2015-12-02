@@ -56,7 +56,7 @@ gulp.task('styles:prod', ['clean:css', 'styles:uncss'], function () {
         .pipe(gulp.dest(config.dist.css));
 });
 
-gulp.task('styles:dev', ['clean:css'], function () {
+gulp.task('styles:dev', function () {
     return gulp.src(config.src.sass)
         .pipe(plugins.sass().on('error', plugins.sass.logError))
         .pipe(plugins.autoprefixer())
@@ -66,7 +66,7 @@ gulp.task('styles:dev', ['clean:css'], function () {
         .pipe(gulp.dest(config.dev.css));
 });
 
-gulp.task('styles:uncss', ['clean:uncss'], function () {
+gulp.task('styles:uncss', function () {
     return gulp.src(config.src.sass)
         .pipe(plugins.sass().on('error', plugins.sass.logError))
         .pipe(plugins.autoprefixer())
@@ -91,16 +91,11 @@ gulp.task('styles:uncss', ['clean:uncss'], function () {
 
 gulp.task('clean:css', function () {
     del.sync([
-        './dist/css/**/*.css',
-        './dev/css/**/*.css'
+        './dist/css/**/*.css'
     ])
 });
 
-gulp.task('clean:uncss', function () {
-    del.sync(['./dist/css/uncss/**/*.css']);
-});
-
-gulp.task('scripts:dev', ['clean:js'], function () {
+gulp.task('scripts:dev', function () {
     return gulp.src([
         config.src.javascripts.vendor + 'jquery.js',
         config.src.javascripts.bootstrap,
@@ -136,8 +131,7 @@ gulp.task('scripts:prod', ['clean:js'], function () {
 
 gulp.task('clean:js', function () {
     del.sync([
-        './dist/javascripts/**/*.js',
-        './dev/javascripts/**/*.js'
+        './dist/javascripts/**/*.js'
     ])
 });
 
