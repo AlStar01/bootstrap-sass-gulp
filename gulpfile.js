@@ -37,7 +37,8 @@ var config = {
         tasks: [
             'scripts:prod',
             'styles:prod',
-            'html:prod'
+            'html:prod',
+            'images:prod'
         ]
     }
 };
@@ -177,6 +178,18 @@ gulp.task('clean:html', function () {
     ])
 });
 
+gulp.task('images:dev', function() {
+   return gulp.src(config.src.images)
+    .pipe(plugins.imagemin())
+    .pipe(gulp.dest(config.dev.images));
+});
+
+gulp.task('images:prod', function() {
+   return gulp.src(config.src.images)
+    .pipe(plugins.imagemin())
+    .pipe(gulp.dest(config.dist.images));
+});
+
 gulp.task('build:prod', function(){
     config.build.tasks.forEach( function ( task ) {
         gulp.start( task );
@@ -210,12 +223,9 @@ gulp.task('clean:dev', function () {
 // Watch tasks
 gulp.task('watch', function(){
     gulp.watch(config.src.sass, ['styles:dev', 'test:phantomcss']);
-    gulp.watch([
-        config.src.javascripts.vendor + 'jquery.js',
-        config.src.javascripts.bootstrap,
-        config.src.javascripts.app
-    ], ['scripts:dev']);
+    gulp.watch(config.src.javascripts.app, ['scripts:dev']);
     gulp.watch(config.src.html, ['html:dev, test:phantomcss']);
+    gulp.watch(config.src.images, ['images:dev']);
 });
 
 gulp.task('default', ['watch'], function () {
