@@ -1,3 +1,27 @@
+////////////////////////////////
+/*
+    CONFIG
+    STYLES
+    SCRIPTS
+    HTML
+    IMAGES
+    BUILD
+    CLEAN
+    WATCH
+    DEFAULT
+*/
+////////////////////////////////
+
+
+////////////////////////////////
+////////////////////////////////
+/*
+    CONFIG
+*/
+////////////////////////////////
+////////////////////////////////
+
+
 var gulp = require('gulp');
 var plugins = require('gulp-load-plugins')();
 var del = require('del');
@@ -42,6 +66,14 @@ var config = {
         ]
     }
 };
+
+////////////////////////////////
+////////////////////////////////
+/*
+    STYLES
+*/
+////////////////////////////////
+////////////////////////////////
 
 gulp.task('styles:prod', ['clean:css', 'styles:uncss'], function () {
     return gulp.src(config.src.sass)
@@ -95,21 +127,18 @@ gulp.task('test:phantomcss', function() {
         .pipe(plugins.phantomcss());
 });
 
-gulp.task('clean:css', function () {
-    del.sync([
-        './dist/css/**/*.css'
-    ])
-});
-
 gulp.task('styleguide', ['clean:styleguide', 'clean:css', 'styles:prod'], function() {
     return plugins.run('kss-node --config kss-config.json').exec();
 });
 
-gulp.task('clean:styleguide', function () {
-    del.sync([
-        './styleguide/**/*'
-    ])
-});
+
+////////////////////////////////
+////////////////////////////////
+/*
+    SCRIPTS
+*/
+////////////////////////////////
+////////////////////////////////
 
 gulp.task('scripts:dev', function () {
     return gulp.src([
@@ -141,11 +170,14 @@ gulp.task('scripts:prod', ['clean:js'], function () {
     .pipe(gulp.dest(config.dist.javascripts));
 });
 
-gulp.task('clean:js', function () {
-    del.sync([
-        './dist/javascripts/**/*.js'
-    ])
-});
+
+////////////////////////////////
+////////////////////////////////
+/*
+    HTML
+*/
+////////////////////////////////
+////////////////////////////////
 
 gulp.task('html:aria', function () {
     return gulp.src(config.src.html)
@@ -172,11 +204,14 @@ gulp.task('html:prod', ['clean:html'],function(){
         .pipe(gulp.dest(config.dist.html));
 });
 
-gulp.task('clean:html', function () {
-    del.sync([
-        './dist/html/**/*.html'
-    ])
-});
+
+////////////////////////////////
+////////////////////////////////
+/*
+    IMAGES
+*/
+////////////////////////////////
+////////////////////////////////
 
 gulp.task('images:dev', function() {
    return gulp.src(config.src.images)
@@ -190,10 +225,58 @@ gulp.task('images:prod', function() {
     .pipe(gulp.dest(config.dist.images));
 });
 
+
+////////////////////////////////
+////////////////////////////////
+/*
+    BUILD
+*/
+////////////////////////////////
+////////////////////////////////
+
 gulp.task('build:prod', function(){
     config.build.tasks.forEach( function ( task ) {
         gulp.start( task );
       });
+});
+
+gulp.task('build:dev', ['clean:dev'], function(){
+    config.dev.tasks.forEach( function ( task ) {
+        gulp.start( task );
+      });
+});
+
+
+////////////////////////////////
+////////////////////////////////
+/*
+    CLEAN
+*/
+////////////////////////////////
+////////////////////////////////
+
+gulp.task('clean:css', function () {
+    del.sync([
+        './dist/css/**/*.css'
+    ])
+});
+
+gulp.task('clean:styleguide', function () {
+    del.sync([
+        './styleguide/**/*'
+    ])
+});
+
+gulp.task('clean:js', function () {
+    del.sync([
+        './dist/javascripts/**/*.js'
+    ])
+});
+
+gulp.task('clean:html', function () {
+    del.sync([
+        './dist/html/**/*.html'
+    ])
 });
 
 gulp.task('clean:prod', function () {
@@ -205,12 +288,6 @@ gulp.task('clean:prod', function () {
     ])
 });
 
-gulp.task('build:dev', ['clean:dev'], function(){
-    config.dev.tasks.forEach( function ( task ) {
-        gulp.start( task );
-      });
-});
-
 gulp.task('clean:dev', function () {
     del.sync([
         './dev/html/**/*.html',
@@ -220,7 +297,14 @@ gulp.task('clean:dev', function () {
     ])
 });
 
-// Watch tasks
+////////////////////////////////
+////////////////////////////////
+/*
+    WATCH
+*/
+////////////////////////////////
+////////////////////////////////
+
 gulp.task('watch', function(){
     gulp.watch(config.src.sass, ['styles:dev', 'test:phantomcss']);
     gulp.watch(config.src.javascripts.app, ['scripts:dev']);
