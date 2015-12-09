@@ -16,7 +16,6 @@
     "gulp-concat": "latest",
     "gulp-filesize": "latest",
     "gulp-imagemin": "latest",
-    "gulp-jsdoc": "^0.1.5",
     "gulp-load-plugins": "latest",
     "gulp-minify-css": "latest",
     "gulp-minify-html": "latest",
