@@ -170,6 +170,10 @@ gulp.task('scripts:prod', ['clean:js'], function () {
     .pipe(gulp.dest(config.dist.javascripts));
 });
 
+gulp.task('scripts:jsdoc', plugins.shell.task([
+    '"node_modules/.bin/jsdoc.cmd" -c ./doc-config.json'
+]));
+
 
 ////////////////////////////////
 ////////////////////////////////

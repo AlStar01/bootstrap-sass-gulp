@@ -1,0 +1,17 @@
+{
+	"source": {
+		"include": [
+			"./src/javascripts/app/"
+		]
+	},
+	"plugins": [],
+	"opts": {
+        "template": "templates/default",
+        "encoding": "utf8",
+        "destination": "./documentation",
+        "recurse": true,
+		"verbose": true,
+        "private": true,
+        "readme": "./readme.md"
+    }
+}
