@@ -27,3 +27,87 @@
 
 /* ./src/sass/company/pages/_about.scss */
 /* END #ABOUT */
+
+
+
+// Breadcrumbs
+//
+// Indicate the current page's location within a navigational hierarchy.
+//
+// Markup:
+// <ol class="breadcrumb">
+//   <li><a href="#">Home</a></li>
+//   <li><a href="#">Library</a></li>
+//   <li class="active">Data</li>
+// </ol>
+//
+// Style guide: about.breadcrumb
+
+
+
+// Panels
+//
+// While not always necessary, sometimes you need to put your DOM in a box. For those situations, try the panel component.
+//
+// Style guide: about.panels
+
+// Default Panel
+//
+// By default, all the <code>.panel</code> does is apply some basic border and padding to contain some content.
+//
+// Markup:
+// <div class="panel panel-default">
+//   <div class="panel-body">
+//     Basic panel example
+//   </div>
+// </div>
+//
+// Style guide: about.panels.panel-default
+
+
+// Default panel with heading
+//
+// Easily add a heading container to your panel with <code>.panel-heading</code>. You may also include any &gt;h1&lt;-&gt;h6&lt; with a <code>.panel-title</code> class to add a pre-styled heading.
+//
+// For proper link coloring, be sure to place links in headings within <code>.panel-title</code>.
+//
+// Markup:
+// <div class="panel panel-default">
+//   <div class="panel-heading">Panel heading without title</div>
+//   <div class="panel-body">
+//     Panel content
+//   </div>
+// </div>
+//
+// <div class="panel panel-default">
+//   <div class="panel-heading">
+//     <h3 class="panel-title">Panel title</h3>
+//   </div>
+//   <div class="panel-body">
+//     Panel content
+//   </div>
+// </div>
+//
+// Style guide: about.panels.panel-default-heading
+
+
+
+// Navs
+//
+// Navbars are responsive meta components that serve as navigation headers for your application or site. They begin collapsed (and are toggleable) in mobile views and become horizontal as the available viewport width increases.
+//
+// Markup:
+// <ul class="nav {{modifier_class}}" role="tablist">
+//   <li class="active"><a href="#">Home</a></li>
+//   <li><a href="#">Profile</a></li>
+//   <li><a href="#">Messages</a></li>
+// </ul>
+//
+// .nav-tabs - Simple navigation
+// .nav-pills - Pill navigation
+// .nav-tabs.nav-stacked - Stacked navigation
+// .nav-pills.nav-stacked - Pill and stacked navigation
+// .nav-tabs.nav-justified - Justified navigation
+// .nav-pills.nav-justified - Pill and justified navigation
+//
+// Style guide: about.navs
